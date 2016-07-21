@@ -1,0 +1,53 @@
+<div class="container">
+  <br>
+  <form #userForm="ngForm"
+        (ngSubmit)="submitForm(userForm)"
+        novalidate
+        autocomplete="off"
+        class="form-section">
+
+    <!-- user details group -->
+    <div ngModelGroup="userDetails"
+         #userDetailsGroup="ngModelGroup"
+         class="form-group form-inline">
+
+      <!-- name input -->
+      <label for="user-name">name: </label>
+
+      <input id="user-name"
+             [ngModel]="model.userDetails.userName"
+             name="userName"
+             required
+             pattern="[A-Za-z ]{2,}"
+             class="form-control">
+
+      <!-- email input -->
+      <label for="user-email">email: </label>
+
+      <input id="user-email"
+             [ngModel]="model.userDetails.userEmail"
+             name="userEmail"
+             required
+             minlength="3"
+             pattern=".+@.+"
+             class="form-control">
+
+      <span *ngIf="emailHasError(userForm.controls.userDetails?.controls?.userEmail)"
+            class="text-danger">email is not valid</span>
+
+    </div>
+    <!-- /user details group -->
+
+    <button type="submit"
+            [disabled]="!userForm.valid"
+            class="btn btn-success">Submit
+    </button>
+
+    <div *ngIf="userDetailsGroup.dirty && !userDetailsGroup.valid"
+         class="text-danger">details are not valid
+    </div>
+
+  </form>
+
+  <h3>Your email is: {{ model.userDetails.userEmail }}</h3>
+</div>
