@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
-import { DemoTemplateFormComponent } from './demo-template-form';
+import { DemoContainerComponent } from './demo-container';
 
 @Component({
   moduleId: module.id,
   selector: 'app',
-  directives: [DemoTemplateFormComponent],
-  template: `
-    <h1>Form of Art: Angular 2 Forms</h1>
-    <sj-demo-template-form></sj-demo-template-form>
-    `,
+  directives: [DemoContainerComponent],
+  template: `<sj-demo-container></sj-demo-container>`,
 })
 
 export class AppComponent {
+
+  route = 'template';
+
+  goTo(route) {
+    this.route = route;
+  }
+
 }
