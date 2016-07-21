@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { DemoTemplateFormComponent } from '../demo-template-form';
+import { DemoModelFormComponent } from '../demo-model-form';
 
 @Component({
   moduleId: module.id,
   selector: 'sj-demo-container',
-  directives: [DemoTemplateFormComponent],
+  directives: [DemoTemplateFormComponent, DemoModelFormComponent],
   styles: [`
     .demo-page {
       border: 1px solid #5bc0de;
@@ -23,6 +24,7 @@ import { DemoTemplateFormComponent } from '../demo-template-form';
       <button class="btn btn-tab" [ngClass]="{'btn-info': route === 'model'}" (click)="goTo('model')">model-driven</button>
       <div class="demo-page">
         <sj-demo-template-form *ngIf="route === 'template'"></sj-demo-template-form>
+        <sj-demo-model-form *ngIf="route === 'model'"></sj-demo-model-form>
       </div>
     </div>
   `,

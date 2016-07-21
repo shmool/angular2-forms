@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Model-Driven Form</h2>
+
+  <form [formGroup]="userForm"
+        (ngSubmit)="submitForm()"
+        novalidate
+        autocomplete="off"
+        class="form-section">
+
+    <!-- user details group -->
+    <div formGroupName="userDetails"
+         class="form-group form-inline">
+
+      <!-- name input -->
+      <label for="user-name">name: </label>
+      <input id="user-name"
+             formControlName="userName"
+             class="form-control">
+
+      <!-- email input -->
+      <label for="user-email">email: </label>
+      <input id="user-email"
+             formControlName="userEmail"
+             class="form-control">
+
+      <span *ngIf="emailHasError(userForm.controls.userDetails?.controls?.userEmail)"
+            class="text-danger">email is not valid</span>
+
+    </div>
+    <!-- /user details group -->
+
+    <button type="submit"
+            [disabled]="!userForm.valid"
+            class="btn btn-success">Submit
+    </button>
+
+    <div *ngIf="userDetailsGroup.dirty && !userDetailsGroup.valid"
+         class="text-danger">user details are not valid
+    </div>
+
+  </form>
+
+  <h3>Your email is: {{ model.userDetails?.userEmail }}</h3>
+</div>
+
+
